@@ -1,0 +1,121 @@
+body{
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    min-width:1000px;
+    background-color: white;
+}
+.app{
+    width:100%;
+    max-height:7022px;
+    min-height: 1000px;
+    background-color: white;
+}
+.v-wrap{
+    max-width: 80%;
+    min-width: 988px;
+    height: 90%;
+    margin: 20px auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0);
+}
+.v-wrap .l-con{
+    max-width: 800px;
+    min-width: 650px;
+    margin-right:10px;
+    background-color: white;
+}
+.l-con .video-info{
+    height: 100px;
+    margin-bottom: 16px;
+    background-color: white;
+    float: left;
+}
+.video-info .video-data .a-crumbs {
+    margin-right: 16px;}
+.video-title{
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121;
+    line-height: 26px;
+    height: 26px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.video-data{
+    margin-top: 15px;
+    font-size: 12px;
+    height: 16px;
+    color: #999;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.copyright{
+    margin-left: 16px;
+}
+.user{
+    position: relative;
+    height:80px;
+    z-index: 1;
+    margin-left: 20px;
+    padding-bottom: 16px;
+    background-size: 100% 100%;
+    text-align: left;
+}
+.user .touxiang{
+    float: left;
+    width: 64px;
+    height: 64px;
+    margin-top: 10px;
+    border: 2px solid hsla(0,0%,100%,.4);
+    border-radius: 52px;
+    cursor: pointer;
+}
+.head{
+    float: left;
+    width: 65px;
+    height: 65px;
+    margin-top: 2px;
+    border-radius: 52px;
+    object-fit: cover;
+}
+
+.h-basic{
+    float: left;
+    color: #fff;
+    font-size: 0;
+    margin: 10px 0 0 20px;
+}
+.h-basic .h-name{
+    margin:0 5px 5px ;
+    font-weight: 500;
+    line-height: 30px;
+}
+.h-basic .h-name .name{
+    display: inline-block;
+
+    font-size: 24px;
+    color: white;
+    vertical-align: middle;
+}
+.v-wrap .r-con{
+    width: 400px;
+    background-color: rgba(125, 156, 212, 0.28);
+    float: right;
+    border-radius: 8px;
+}
+.video-frame{
+    width: 800px;
+    min-width:650px;
+    height: 450px;
+    margin-top: 150px;
+}

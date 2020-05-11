@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 控制台打印sql语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <mappers><!-- 映射器，告诉 MyBatis到哪里去找映射文件-->
+        <mapper resource="mybatis/VideoMapper.xml"/>
+        <mapper resource="mybatis/UserMapper.xml"/>
+        <mapper resource="mybatis/PostMapper.xml"/>
+        <mapper resource="mybatis/PostImageMapper.xml"/>
+        <mapper resource="mybatis/VideoGroupMapper.xml"/>
+        <mapper resource="mybatis/CommentMapper.xml"/>
+        <mapper resource="mybatis/ReplyMapper.xml"/>
+        <mapper resource="mybatis/FollowMapper.xml"/>
+        <mapper resource="mybatis/VerifyMapper.xml"/>
+        <mapper resource="mybatis/UserNotifyMapper.xml"/>
+        <mapper resource="mybatis/NotifyMapper.xml"/>
+        <mapper resource="mybatis/SubScriptionMapper.xml"/>
+    </mappers>
+</configuration>

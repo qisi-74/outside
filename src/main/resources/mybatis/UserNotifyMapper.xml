@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserNotifyDao">
+   <insert id="AddUserNotify" parameterType="com.po.usernotify">
+       insert into usernotify (uid,notify,createdAt) values (#{uid},#{notify},#{createdAt})
+   </insert>
+    <select id="getAllNotify" resultType="java.lang.Long" parameterType="int">
+        select notify from usernotify where uid=#{uid}
+    </select>
+    <select id="getNotReadNotify" resultType="java.lang.Long" parameterType="int">
+        select notify from usernotify where uid=#{uid} and isRead=0
+    </select>
+    <update id="read" parameterType="int">
+        update  usernotify set isRead=1 where uid=#{uid}
+    </update>
+</mapper>

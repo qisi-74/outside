@@ -1,0 +1,42 @@
+body{
+    margin: 0;
+    padding: 0;
+    max-width: 1688px;
+    min-width:1000px;
+    min-height: 800px;
+    max-height: 2000px;
+    text-align:center;
+    background-color: #e8f5f5;
+}
+.pwd{
+    width: 416px;
+    height: 50%;
+    background-color: #ff692421;
+    margin: 0 auto;
+}
+.getyzm{
+    width: 103px;
+    height: 32px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+#btn_pwd{
+    display: none;
+}
+.btn{
+    width: 80px;
+    height: 30px;
+    float: left;
+    margin: 10px 5px;
+}
+#newpwd{
+    display: none;
+}
+.input{
+    float: left;
+    width: 225px;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 40px;
+}

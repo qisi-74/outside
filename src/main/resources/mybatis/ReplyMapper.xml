@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReplyDao">
+    <insert id="send_reply" parameterType="com.po.reply">
+        insert into reply(comment_id,reply_id,reply_name,content,from_uid,from_headimg,from_name,birthtime) values
+        (#{comment_id},#{reply_id},#{reply_name},#{content},#{from_uid},#{from_headimg},#{from_name},#{birthtime})
+    </insert>
+    <select id="commentList" parameterType="int" resultType="com.po.reply">
+        select * from reply where comment_id=#{comment_id}
+    </select>
+    <delete id="delete_com" parameterType="int">
+        delete from reply where comment_id=#{comment_id}
+    </delete>
+    <delete id="delete_rep" parameterType="int">
+        delete from reply where id=#{id}
+    </delete>
+    <select id="selectLast" resultType="int" parameterType="int">
+        select max(id) from reply where from_uid=#{uid}
+    </select>
+    <select id="selectfromid" resultType="int" parameterType="int">
+        select from_uid from reply where id=#{rid}
+    </select>
+    <select id="selectReply" resultType="com.po.reply" parameterType="int">
+        select * from reply where id=#{id}
+    </select>
+</mapper>

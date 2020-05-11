@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.VideoDao">
+    <select id="selectnById" resultType="String" parameterType="int">
+        select vname from video where vid=#{vid}
+    </select>
+    <select id="selectAllById" resultType="com.po.video" parameterType="int">
+        select * from video where vid=#{vid}
+    </select>
+    <insert id="AddVideo" parameterType="com.po.video">
+        insert into video (vname,vface,vcut_pic,vaddress,vinfo,vtime,uid,videokind_id) values (#{vname},#{vface},#{vcut_pic},#{vaddress},#{vinfo},#{vtime},#{uid},#{videokind_id})
+    </insert>
+    <select id="selectLastVid" parameterType="int" resultType="int">
+        select max(vid) as lastpid from video where uid=#{uid}
+    </select>
+    <select id="selectvidByuid" resultType="com.po.video" parameterType="int">
+        select * from video where uid=#{uid} and vstate=1;
+    </select>
+    <select id="selectvideo" resultType="com.po.video">
+        select * from video where uid=#{uid} and vstate=1
+        <if test="vname !=null and vname!=''">
+            and vname like concat('%',#{vname},'%')
+        </if>
+    </select>
+    <select id="searchvideo" resultType="com.po.video">
+        select * from video where match(vname,vinfo) against(#{vtext}) and vstate=1
+    </select>
+    <update id="updatestate" parameterType="com.po.video">
+        update video set vstate = #{vstate} where vid=#{vid}
+    </update>
+</mapper>

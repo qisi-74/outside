@@ -1,0 +1,11 @@
+input {
+    box-sizing: border-box;
+    height: 55px;
+    display: inline-block;
+    border: 2px solid #228cef;
+    border-radius: 5px;
+    padding: 0 15px;
+    margin: 10px 0;
+    -webkit-transition: .2s;
+    transition: .2s;
+}

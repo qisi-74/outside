@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NotifyDao">
+   <insert id="AddNotify" parameterType="com.po.notify">
+       insert into notify (content,type,targetid,targetType,action,sender,createdAt) values
+       (#{content},#{type},#{targetid},#{targetType},#{action},#{sender},#{createdAt})
+   </insert>
+    <select id="selectLast" parameterType="int" resultType="java.lang.Long">
+        select max(id) from notify where sender=#{uid}
+    </select>
+    <select id="getNotify" parameterType="java.lang.Long" resultType="com.po.notify">
+        select * from notify where id=#{id}
+    </select>
+
+</mapper>

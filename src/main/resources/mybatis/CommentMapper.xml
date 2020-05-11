@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CommentDao">
+    <insert id="send_comment" parameterType="com.po.comment">
+        insert into comment(pid,content,from_uid,from_headimg,from_name,birthtime) values (#{pid},#{content},#{from_uid},#{from_headimg},#{from_name},#{birthtime})
+    </insert>
+    <select id="commentList" parameterType="int" resultType="com.po.comment">
+        select * from comment where pid=#{pid}
+    </select>
+    <select id="getcomment" parameterType="int" resultType="com.po.comment">
+        select * from comment where id=#{id}
+    </select>
+    <select id="selectLast" parameterType="int" resultType="int">
+        select max(pid) from comment where from_uid=#{uid}
+    </select>
+    <select id="selectuid" parameterType="int" resultType="int">
+        select from_uid from comment where id=#{comment_id}
+    </select>
+    <delete id="delete_com" parameterType="int">
+        delete from comment where id=#{id}
+    </delete>
+
+</mapper>

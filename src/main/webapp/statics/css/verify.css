@@ -1,0 +1,43 @@
+.ver_search{
+    height: 60px;
+}
+.content{
+    width: 850px;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 5px;
+    border-left: 1px solid #eee;
+    border-radius: 8px;
+    min-height: 350px;
+    background-color: rgba(107, 99, 239, 0.22);
+}
+.ver_info{
+    text-align: left;
+    width: 400px;
+    height: 120px;
+}
+.block{
+    position: absolute;
+    top: 500px;
+    left: 1000px;
+    text-align: center;
+}
+.ver_text{
+    text-align: left;
+    font-size: 20px;
+}
+.verify{
+    float: left;
+}
+.tab{
+    font-size: 19px;
+    line-height: 75px;
+    margin-right: 35px;
+    position: relative;
+    color: black;
+    cursor: pointer;
+}
+.tab:hover{
+    color: #228cef;
+}

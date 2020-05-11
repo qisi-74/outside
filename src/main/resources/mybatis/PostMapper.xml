@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PostDao">
+    <insert id="AddPost" parameterType="com.po.post">
+        insert into post(pcontext,uid,pbirth) values (#{pcontext},#{uid},#{pbirth})
+    </insert>
+    <insert id="AddPost_V" parameterType="com.po.post">
+        insert into post(pcontext,vid,uid,pbirth) values (#{pcontext},#{vid},#{uid},#{pbirth})
+    </insert>
+    <select id="Lastpid" parameterType="int" resultType="int">
+        select max(pid) as lastpid from post where uid=#{uid}
+    </select>
+    <select id="selectAllBid" resultType="com.po.post" parameterType="int">
+        select * from post where
+        state=1 and
+        uid=#{uid};
+    </select>
+    <select id="selectAllInid" resultType="com.po.post" parameterType="String">
+        select * from post where
+        state=1 and
+        uid  in  (${_parameter})
+    </select>
+    <select id="getvid" parameterType="int" resultType="int">
+        select IFNULL (MAX(vid), 0) from post where pid=#{pid}
+    </select>
+    <select id="getuid" parameterType="int" resultType="int">
+        select IFNULL (MAX(uid), 0) from post where pid=#{pid}
+    </select>
+    <select id="getpid" parameterType="int" resultType="int">
+        select IFNULL (MAX(pid), 0) from post where vid=#{vid}
+    </select>
+    <select id="select" resultType="com.po.post" parameterType="int">
+        select * from post where pid=#{pid}
+    </select>
+    <update id="updatestate" parameterType="com.po.post">
+        update post set state=#{state} where pid=#{pid}
+    </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.FollowDao">
+<select id="queryRelation" parameterType="com.po.follow" resultType="com.po.follow">
+    select following,follower,IFNULL (relation, 0) as relation from follow where (following=#{following} and follower=#{follower})  or (following=#{follower} and follower=#{following})
+</select>
+    <select id="queryFollower" parameterType="int" resultType="int">
+        select follower from follow where following=#{f} and relation in(1,3)
+    </select>
+    <select id="queryFollowing" parameterType="int" resultType="int">
+        select following from follow where follower=#{f} and relation in(2,3)
+    </select>
+    <select id="queryFanFollower" parameterType="int" resultType="int">
+        select follower from follow where following=#{f} and relation in(2,3)
+    </select>
+    <select id="queryFanFollowing" parameterType="int" resultType="int">
+        select following from follow where follower=#{f} and relation in(1,3)
+    </select>
+    <insert id="follow" parameterType="com.po.follow">
+        insert into follow (following,follower,relation) values(#{following},#{follower},#{relation})
+    </insert>
+    <delete id="noFollow" parameterType="com.po.follow">
+        delete from follow where (following=#{following} and follower=#{follower})  or (#{follower} and follower=#{following})
+    </delete>
+    <update id="updateFollow" parameterType="com.po.follow">
+        update follow set relation=#{relation} where (following=#{following} and follower=#{follower})  or (following=#{follower} and follower=#{following})
+    </update>
+</mapper>

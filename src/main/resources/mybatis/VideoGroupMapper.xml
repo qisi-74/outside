@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.VideoGroupDao">
+    <select id="selectAll" resultType="com.po.videogroup">
+		select * from video_group
+	</select>
+    <select id="selectSub" resultType="com.po.videogroup" parameterType="int">
+		<bind name="vg" value="vgid+'_'"/>
+		select * from video_group where vgid  like #{vg};
+	</select>
+</mapper>

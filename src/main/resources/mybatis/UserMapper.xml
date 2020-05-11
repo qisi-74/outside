@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+    <select id="selectnameById" resultType="String" parameterType="int">
+        select name from user where uid=#{uid}
+    </select>
+    <select id="selectheadById" resultType="String" parameterType="int">
+        select touxiang from user where uid=#{uid}
+    </select>
+    <select id="selectphoneById" resultType="String" parameterType="int">
+        select phone from user where uid=#{uid}
+    </select>
+    <select id="selectpwdById" resultType="String" parameterType="int">
+        select password from user where uid=#{uid}
+    </select>
+    <select id="selectemailById" resultType="String" parameterType="int">
+        select email from user where uid=#{uid}
+    </select>
+    <select id="selectidcardById" resultType="String" parameterType="int">
+        select idcard from user where uid=#{uid}
+    </select>
+    <select id="selectUserByZh" resultType="String" parameterType="String">
+        select password from user where 1=1
+        <if test="phone !=null and phone!=''">
+        and  (phone=#{zh}
+        </if>
+        <if test="email !=null and email!=''">
+            or email=#{zh})
+        </if>
+    </select>
+    <select id="selectUidByZh" resultType="int" parameterType="String">
+        select uid from user where 1=1
+        <if test="phone !=null and phone!=''">
+            and  (phone=#{zh}
+        </if>
+        <if test="email !=null and email!=''">
+            or email=#{zh})
+        </if>
+    </select>
+    <insert id="AddUser" parameterType="com.po.user">
+        insert into user (name,password,phone) values(#{name},#{password},#{phone})
+    </insert>
+    <select id="selectNameByName" resultType="String" parameterType="String">
+        select name from user where name=#{name};
+    </select>
+    <update id="updatesetting" parameterType="com.po.user">
+        update user
+        <set>
+            <if test="name!=null and name!=''"> name = #{name},</if>
+            <if test="sex!=null and sex!=2">sex = #{sex},</if>
+            <if test="qianming!=null and qianming!=''">qianming = #{qianming} ,</if>
+            <if test="touxiang!=null and touxiang!=''">touxiang = #{touxiang} ,</if>
+            <if test="password!=null and password!=''">password = #{password} </if>
+        </set>
+        where uid=#{uid}
+    </update>
+    <select id="selectuserByid" parameterType="int" resultType="com.po.user">
+        select * from user where uid=#{uid}
+    </select>
+    <select id="searchuser" parameterType="String" resultType="com.po.user">
+        select * from user where match(name) against(#{name}) and state=1
+    </select>
+    <update id="setpwd" parameterType="com.po.user">
+        update user set password=#{password} where email=#{email}
+    </update>
+    <update id="updatestate" parameterType="com.po.user">
+        update user set state=#{state} where uid=#{uid}
+    </update>
+</mapper>
