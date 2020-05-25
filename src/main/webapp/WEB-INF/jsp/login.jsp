@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes />" />
     <title>登录</title>
     <script src="${pageContext.request.contextPath}/statics/js/jQuery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/statics/js/login.js"></script>
@@ -35,8 +36,10 @@
             <span id="sp_pwd" ></span><br>
             <span id="spErr">${error}</span><br>
             <a href="${pageContext.request.contextPath}/account/findpwd">忘记密码？</a>
+            <a href=""></a>
             <div class="btn-box">
                 <a id="log_btn" class="btn btn-login">登录</a>
+
                 <a href="${pageContext.request.contextPath }/index/register" class="btn btn-reg">注册</a></div>
         </form>
         <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />

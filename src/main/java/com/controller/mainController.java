@@ -20,12 +20,10 @@ public class mainController {
     private UserService userService;
     @RequestMapping(value = "/main")
     public String main(HttpSession session, Model model){
+        logger.info("maina");
         int uid=Integer.parseInt(session.getAttribute("uid").toString());
-
         model.addAttribute("uid",session.getAttribute("uid"));
         model.addAttribute("user_head",session.getAttribute("head_img"));
-        System.out.println("session:"+session.getAttribute("uid"));
-        System.out.println("session:"+session.getAttribute("head_img"));
         return "main/main";
 }
 @RequestMapping(value = "/search")

@@ -64,11 +64,9 @@ public class tController {
     @RequestMapping(value = "/feed")
     @ResponseBody
     public List<post> feed(HttpServletRequest request){
-        System.out.println("feed");
         int intuid=Integer.parseInt(request.getSession().getAttribute("uid").toString());
         List<Integer> f=followService.queryFollower(intuid);
         f.add(intuid);
-        System.out.println("feed");
         List<post> postList=postService.getAll(f);
         return postList;
     }
@@ -76,9 +74,7 @@ public class tController {
     @RequestMapping(value = "/post/publish")
     public String publish_post(@RequestParam("editor") String editor, @RequestParam("div_n") int div_n, HttpServletRequest req, HttpServletResponse response){
         logger.info("publish_post");
-        System.out.println("动态内容"+editor);
         int uid=  req.getSession().getAttribute("uid")!=null?(int) req.getSession().getAttribute("uid"):-1;
-        System.out.println("动态发布人"+req.getSession().getAttribute("uid"));
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         Date utildate =new Date();
         Timestamp sqldate=new Timestamp(utildate.getTime());
@@ -91,7 +87,6 @@ public class tController {
             postService.post_publish(editor,uid,current_date);
             int pid=postService.getLast(uid);
             notifyService.createSubScript(pid,"post","comment",uid,sqldate);
-            System.out.println("这条动态的pid："+pid);
             postImageService.addPIPath(pid,pip);
         }
         return "main/post/post";
@@ -100,18 +95,14 @@ public class tController {
     public String post_img(@RequestParam("file") CommonsMultipartFile file, @RequestParam("div_n") int div_n,
                            HttpServletRequest req, HttpServletResponse response, Model model) {
         logger.info("post.ajax.img");
-        System.out.println("九宫格第"+div_n);
-        System.out.println(req.getSession().getAttribute("uid"));
-        System.out.println(req.getSession().getServletContext().getRealPath("/"));
+
         if (file.getSize() != 0) {
-            System.out.println(file.getOriginalFilename());
             // 获取上传时候的文件名
             String filename = file.getOriginalFilename();
 
             // 获取文件后缀名
             String filename_extension = filename.substring(filename
                     .lastIndexOf(".") + 1);
-            System.out.println("图片的后缀名:" + filename_extension);
             String path = Common.PostImgPath;
 
             //时间戳做新的文件名，避免中文乱码-重新生成filename
@@ -119,7 +110,6 @@ public class tController {
             filename = Long.toString(filename1) + UUID.randomUUID().toString() + "." + filename_extension;
             String cookie_nine_number="post_img_nine_"+div_n;
             CookieUtil.setCookie(req,response,cookie_nine_number,filename,true);
-            System.out.println("path:"+path);
             File TempFile = new File(path);
             if (TempFile.exists()) {
                 if (TempFile.isDirectory()) {
@@ -209,7 +199,6 @@ public class tController {
             //在删除comment表
         }else if(table.equals("reply")) {
             replyService.delete_reply(table,intid);
-            System.out.println("re"+id);
 
         }
 
@@ -233,7 +222,6 @@ public class tController {
         //写入消息队列中，获取刚写入的消息的id
         long id=notifyService.createNoity(content,Byte.valueOf("1"),intpid,"post","comment",session_uid,new Timestamp(new Date().getTime()));
 
-        System.out.println("id是"+id);
         //写入用户消息队列,第一个参数应为pid 的uid
         int uidpid=postService.getuid(intpid);
         notifyService.createUserNoity(uidpid,id,new Timestamp(new Date().getTime()));
@@ -261,7 +249,6 @@ public class tController {
         notifyService.createSubScript(last,"reply","reply",intuid,sqldate);
         //写入消息队列中，获取刚写入的消息的id
         long id=notifyService.createNoity(context,Byte.valueOf("1"),last,"reply","reply",intuid,new Timestamp(new Date().getTime()));
-        System.out.println("id是"+id);
         //写入用户消息队列,第一个参数为回复的评论所属id，即from_id
         int acid=0;
         if(intrid==0){

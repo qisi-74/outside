@@ -32,7 +32,6 @@ public class CommentServiceImpl implements CommentService {
         com.setFrom_headimg(headimg);
         com.setFrom_name(name);
         com.setBirthtime(birthtime);
-        System.out.println(com.getBirthtime());
         commentDao.send_comment(com);
         return true;
     }
@@ -44,14 +43,13 @@ public class CommentServiceImpl implements CommentService {
         while(it.hasNext()){
             comment c=it.next();
 
-            System.out.println(c.getContent());
+
         }
         return pcl;
     }
 
     @Override
     public boolean delete(int commentid) {
-        System.out.println("zhixing");
         commentDao.delete_com(commentid);
         return true;
     }
@@ -68,7 +66,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public comment getcomment(int id) {
-        System.out.println("comment");
         return commentDao.getcomment(id);
     }
 }

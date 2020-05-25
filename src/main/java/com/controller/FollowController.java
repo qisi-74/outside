@@ -34,9 +34,7 @@ public class FollowController {
     public String query(String accessid, HttpServletRequest request, Model model){
         int intacid=Integer.parseInt(accessid);
         int intuid=Integer.parseInt(request.getSession().getAttribute("uid").toString());
-        System.out.println(intacid+" "+intuid);
         String relation=followService.queryRelation(intacid,intuid);
-        System.out.println(intacid+" "+intuid+" "+relation);
         return relation;
     }
     @RequestMapping(value = "/update")
@@ -44,10 +42,8 @@ public class FollowController {
     public String update(String accessid, HttpServletRequest request){
         int intacid=Integer.parseInt(accessid);
         int intuid=Integer.parseInt(request.getSession().getAttribute("uid").toString());
-        System.out.println(intacid+" "+intuid);
         followService.follow(intacid,intuid);
         String relation=followService.queryRelation(intacid,intuid);
-        System.out.println(intacid+" "+intuid+" "+relation);
         return relation;
     }
     @RequestMapping(value = "/fan/follower")
@@ -68,12 +64,10 @@ public class FollowController {
     @ResponseBody
     public user fan_search(String uid){
         int intuid=Integer.parseInt(uid);
-        System.out.println(intuid);
         user u=userService.query(intuid);
         if(u.getState()==0){
             u=null;
         }
-        System.out.println(u.getName());
         return u;
     }
 

@@ -64,9 +64,9 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public List<Integer> queryFollower(int f) {
         List<Integer> fan1=followDao.queryFanFollowing(f);
-        System.out.println(fan1.size());
+
         List<Integer> fan2=followDao.queryFanFollower(f);
-        System.out.println(fan2.size());
+
         fan1.addAll(fan2);
         return fan1;
     }
@@ -74,9 +74,9 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public List<Integer> queryFollowing(int f) {
         List<Integer> fan1=followDao.queryFollowing(f);
-        System.out.println(fan1.size());
+
         List<Integer> fan2=followDao.queryFollower(f);
-        System.out.println(fan2.size());
+
         fan1.addAll(fan2);
         return fan1;
     }

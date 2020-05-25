@@ -44,7 +44,7 @@ public class ReplyServiceImpl implements ReplyService {
         Iterator<reply> rll=replyList.iterator();
         while(rll.hasNext()){
             reply r=rll.next();
-            System.out.println(r.getContent());
+
         }
         return replyList;
     }

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>OutSide，新的世界</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/main/main.css">
     <script src="${pageContext.request.contextPath}/statics/js/jQuery-3.4.1.js"></script>

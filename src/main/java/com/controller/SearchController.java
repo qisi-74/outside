@@ -90,7 +90,6 @@ public class SearchController {
     public List<user> search_user(String key, HttpServletRequest req, HttpServletResponse response, Model model){
         logger.info(key);
         List<user> user=userService.searchuser(key);
-        System.out.println(user.size());
         return user;
     }
 

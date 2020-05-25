@@ -115,6 +115,13 @@ $(function() {
                 $("#pwd").focus();
                 return;
             }
+            if(user_pwd.length<8||user_pwd.length>16){
+                $("#spErr2").css("color", "red");
+                $("#spErr2").html("&nbsp;&nbsp;密码长度应为8到16位");
+                $("#pwd").focus();
+                return;
+            }
+
             if(!check_phone()){
                 return;
             }

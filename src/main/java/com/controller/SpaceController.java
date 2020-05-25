@@ -71,10 +71,8 @@ public class SpaceController {
     @RequestMapping(value = "/video")
     @ResponseBody
     public List<video> video_list(String uid, String vname, HttpServletRequest request, HttpServletResponse response, Model model){
-        System.out.println(uid);
         int intuid=Integer.parseInt(uid);
 //        List<video> videolist=videoService.getVidList(intuid);
-        System.out.println(vname+"------------------------------------------------------------------------");
         List<video> videolist=videoService.getVtextList(intuid,vname);
         model.addAttribute("videolist",videolist);
         return videolist;
@@ -82,7 +80,6 @@ public class SpaceController {
     @RequestMapping(value = "/post")
     @ResponseBody
     public List<post> post_list(String uid, HttpServletRequest request, HttpServletResponse response, Model model){
-        System.out.println(uid);
         int intuid=Integer.parseInt(uid);
         List<post> videolist=postService.getAll(intuid);
 //        model.addAttribute("videolist",videolist);
@@ -109,13 +106,10 @@ public class SpaceController {
     @RequestMapping(value = "/post/video")
     @ResponseBody
     public video getpostvideo(String pid){
-        System.out.println("pid:"+pid);
         int intpid=Integer.parseInt(pid);
         int vid=postService.getvid(intpid);
-        System.out.println(vid);
         video v=null;
         if(vid!=0){
-            System.out.println(vid);
             v=videoService.videoplay(vid);
         }
 

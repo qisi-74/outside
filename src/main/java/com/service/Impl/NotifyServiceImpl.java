@@ -81,7 +81,6 @@ public class NotifyServiceImpl implements NotifyService {
         while (all.hasNext()){
 
             long a1= (long) all.next();
-            System.out.println(a1);
             notify a =notifyDao.getNotify(a1);
             notify.add(a);
         }

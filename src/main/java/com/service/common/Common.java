@@ -11,7 +11,7 @@ package com.service.common;
  **/
 public final class Common {
     //工程的真实路径
-    public static final String REAL_PATH= "E:\\idea\\graduation\\outside\\web\\";
+    public static final String REAL_PATH= "E:\\idea\\Maven\\outside\\src\\main\\webapp\\";
     //头像路径
     public static final String HEAD_PATH=REAL_PATH+ "statics\\userheadimg\\";
     //db头像路径

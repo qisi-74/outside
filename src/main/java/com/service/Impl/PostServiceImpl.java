@@ -57,7 +57,6 @@ public class PostServiceImpl implements PostService {
         Iterator<post> pl=postList.iterator();
         while(pl.hasNext()){
             post p=pl.next();
-            System.out.println(p.getPid()+p.getPcontext());
         }
         return postList;
     }

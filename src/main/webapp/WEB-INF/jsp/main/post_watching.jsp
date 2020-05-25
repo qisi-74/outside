@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>${name}的动态</title>
     <link href="${pageContext.request.contextPath}/statics/css/header.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/statics/css/public.css" rel="stylesheet">

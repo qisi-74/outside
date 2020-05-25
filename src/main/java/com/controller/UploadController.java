@@ -63,7 +63,6 @@ public class UploadController {
     public String contrubute(HttpServletRequest request){
         //当这里提交之后，对视频进行转码，水印，封面，
         //所以，我需要接收的有：uid，shipin目录,封面目录,
-        System.out.println("contribution");
         int uid= request.getSession().getAttribute("uid")!=null?(int) request.getSession().getAttribute("uid"):-1;
         System.out.println("视频来源："+request.getParameter("radio_kind"));
         System.out.println("分区"+request.getParameter("area"));

@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <settings>
-        <!-- 控制台打印sql语句 -->
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
-    </settings>
+<!--    <settings>-->
+<!--        &lt;!&ndash; 控制台打印sql语句 &ndash;&gt;-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+<!--    </settings>-->
     <mappers><!-- 映射器，告诉 MyBatis到哪里去找映射文件-->
         <mapper resource="mybatis/VideoMapper.xml"/>
         <mapper resource="mybatis/UserMapper.xml"/>

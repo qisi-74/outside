@@ -39,15 +39,7 @@ public class VideoServiceImpl implements VideoService {
         v.setVtime(vtime);
         v.setUid(uid);
         v.setVideokind_id(Integer.parseInt(videokind_id.trim()));
-        System.out.println(v.getVname());
-        System.out.println(v.getVface());
-        System.out.println(v.getVcut_pic());
-        System.out.println(v.getVaddress());
-        System.out.println(v.getVtime());
-        System.out.println(v.getUid());
-        System.out.println(v.getVideokind_id());
         videoDao.AddVideo(v);
-        System.out.println("结果为："+videoDao.selectnById(1));;
         return true;
     }
 
@@ -71,7 +63,6 @@ public class VideoServiceImpl implements VideoService {
         while(vl.hasNext()){
             video v=vl.next();
 
-            System.out.println(v.getVid()+v.getVname());
         }
         return videolist;
     }
@@ -83,7 +74,6 @@ public class VideoServiceImpl implements VideoService {
         while(vl.hasNext()){
             video v=vl.next();
 
-            System.out.println(v.getVid()+v.getVname());
         }
         return videolist;
     }

@@ -68,7 +68,6 @@ public class NotifyController {
         logger.info("/comment/id");
         int intid=Integer.parseInt(id);
         comment content=commentService.getcomment(intid);
-        System.out.println("comment---------------------"+content.getContent());
         return content;
     }
     @RequestMapping(value = "/reply")
@@ -78,7 +77,6 @@ public class NotifyController {
         int intid=Integer.parseInt(id);
         reply content=replyService.getreply(intid);
         logger.info(content);
-        System.out.println("reply---------------------"+content.getContent());
         return content;
     }
     @RequestMapping(value = "/message")

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>审核界面</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/account/account.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/header.css"/>

@@ -25,7 +25,7 @@ public class AccountController {
     private UserService userService;
     @RequestMapping(value = "/setting")
     public String Setting(){
-    return "main/account/account_setting";
+        return "main/account/account_setting";
 }
     @RequestMapping(value = "/info")
     public String account(Model model){
@@ -85,7 +85,6 @@ public class AccountController {
     public String updatepwd(@RequestParam("email") String email, @RequestParam("pwd") String pwd, Model model){
         System.out.println(email+pwd);
         userService.findpwd(email,pwd);
-        System.out.println("访问到这里");
         return "findpwd";
     }
 

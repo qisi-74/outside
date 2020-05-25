@@ -30,7 +30,6 @@ public class PostImageServiceImpl implements PostImageService {
         Iterator pap =path.iterator();
         while(pap.hasNext()){
             String imagepath=pap.next().toString();
-            System.out.println(imagepath);
             pi.setPostimagepath(imagepath);
             postImageDao.AddPIP(pi);
         }
