@@ -8,6 +8,7 @@ import com.service.Interface.UserService;
 import com.service.Interface.VideoService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +32,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/search")
 public class SearchController {
-    private static final Log logger = LogFactory.getLog(SearchController.class);
+    private static final Logger logger= Logger.getLogger(SearchController.class);
     @Autowired
     private VideoService videoService;
     @Autowired

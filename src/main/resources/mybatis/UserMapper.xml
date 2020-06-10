@@ -52,7 +52,8 @@
             <if test="sex!=null and sex!=2">sex = #{sex},</if>
             <if test="qianming!=null and qianming!=''">qianming = #{qianming} ,</if>
             <if test="touxiang!=null and touxiang!=''">touxiang = #{touxiang} ,</if>
-            <if test="password!=null and password!=''">password = #{password} </if>
+            <if test="password!=null and password!=''">password = #{password} ,</if>
+            <if test="email!=null and email!=''">email = #{email} </if>
         </set>
         where uid=#{uid}
     </update>

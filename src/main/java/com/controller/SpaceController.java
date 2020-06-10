@@ -10,6 +10,7 @@ import com.service.Interface.VideoService;
 import com.service.common.Common;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/space")
 public class SpaceController {
+    private static final Logger logger= Logger.getLogger(SpaceController.class);
     @Autowired
     private UserService userService;
     @Autowired
@@ -41,8 +43,6 @@ public class SpaceController {
     private PostService postService;
     @Autowired
     private PostImageService postImageService;
-
-    private static final Log logger = LogFactory.getLog(SpaceController.class);
 
     @RequestMapping(value = "/preson")
     public String preson_space(String uid, HttpServletRequest request, Model model) {
@@ -88,7 +88,7 @@ public class SpaceController {
     @RequestMapping(value = "/gethead")
     @ResponseBody
     public user gethead(String uid, HttpServletRequest request, HttpServletResponse response, Model model){
-        System.out.println(uid);
+        logger.info(uid);
         int intuid=Integer.parseInt(uid);
         user u=new user();
         u.setName(userService.query_name(intuid));

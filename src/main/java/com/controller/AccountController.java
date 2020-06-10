@@ -3,9 +3,11 @@ package com.controller;
 import com.service.Interface.UserService;
 import com.service.app.Converbase64;
 import com.service.app.email.EmailCode;
+import com.service.app.email.EmailUtil_netease;
 import com.service.app.email.EmailUtil_qq;
 import com.service.app.email.htmlText;
 import com.service.common.Common;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
+    private static final Logger logger= Logger.getLogger(AccountController.class);
     @Autowired
     private UserService userService;
     @RequestMapping(value = "/setting")
@@ -41,6 +44,7 @@ public class AccountController {
     return "main/account/account";
     }
 
+
     @RequestMapping(value = "/update/head")
     public String face(String head, HttpServletRequest request, Model model){
         int i=Integer.parseInt(request.getSession().getAttribute("uid").toString());
@@ -58,16 +62,20 @@ public class AccountController {
         String name=request.getParameter("name");
         short sex=(request.getParameter("sex")==null||request.getParameter("sex")=="")?2:Short.parseShort(request.getParameter("sex"));
         String qianming=request.getParameter("qianming");
-        if(userService.uniq_name(name)!=null){
-            model.addAttribute("error","该昵称已被注册");
-            model.addAttribute("type","account");
-            return "main/account/account";
+        if(name!=null){
+            if(userService.uniq_name(name)!=null){
+                model.addAttribute("error","该昵称已被注册");
+                model.addAttribute("type","account");
+                return "main/account/account";
+            }
         }
+
             userService.update_setting(i,name,sex,qianming);
         return "main/main";
     }
     @RequestMapping(value = "/update/pwd")
     public String updatepwd(HttpServletRequest request, Model model){
+        logger.info("更新邮箱");
         int i=Integer.parseInt(request.getSession().getAttribute("uid").toString());
         String oldpwd=request.getParameter("oldpwd");
         String newpwd=request.getParameter("newpwd");
@@ -77,13 +85,23 @@ public class AccountController {
             return "main/account/account";
         }else {
             userService.updatepwd(i,newpwd);
+            return "redirect:/outside/destory";
         }
+    }
+    @RequestMapping(value = "/update/email")
+    public String updateemail(HttpServletRequest request){
+        logger.info("updateemail");
+        int i=Integer.parseInt(request.getSession().getAttribute("uid").toString());
+        logger.info(i);
 
-        return "main/main";
+        String toemail=request.getParameter("toemail");
+        logger.info(toemail);
+        userService.updatemail(i,toemail);
+       return "redirect:/account/security/email";
     }
     @RequestMapping(value = "/newpwd")
     public String updatepwd(@RequestParam("email") String email, @RequestParam("pwd") String pwd, Model model){
-        System.out.println(email+pwd);
+        logger.info(email+pwd);
         userService.findpwd(email,pwd);
         return "findpwd";
     }
@@ -99,11 +117,12 @@ public class AccountController {
             userService.update_sign(i,sign);
         return "main/account/account_setting";
     }
-    @RequestMapping(value = "/security")
-    public String security(Model model){
-        model.addAttribute("type","security");
+    @RequestMapping(value = "/security/pwd")
+    public String security_pwd(Model model){
+        model.addAttribute("type","pwd");
         return "main/account/account";
     }
+
     @RequestMapping(value = "/security/yuan")
     public String security_setting(Model model){
         model.addAttribute("type","security");
@@ -124,7 +143,8 @@ public class AccountController {
         if(!email.equals("")){
         model.addAttribute("email",email);
         }
-        return "main/account/account_security_email";
+        model.addAttribute("type","email");
+        return "main/account/account";
     }
     @RequestMapping(value = "/ajax/yzm/email")
     @ResponseBody
@@ -132,23 +152,23 @@ public class AccountController {
         boolean send_success=false;
         String code= EmailCode.getRandom();
         String Content= htmlText.html(code);
-        System.out.println(Content);
-//        EmailUtil_netease emailUtil=new EmailUtil_netease();
-//        try {
-//            send_success=emailUtil.sendMail(email,Content);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        if(!send_success){
-            System.out.println("send email by qq");
+        logger.info(Content);
+        EmailUtil_netease emailUtil=new EmailUtil_netease();
+        try {
+            send_success=emailUtil.sendMail(email,Content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(!send_success){
+            logger.info("send email by qq");
             try {
                 EmailUtil_qq email_qq=new EmailUtil_qq();
                 email_qq.sendMail(email,Content);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
-//        }
-        System.out.println("验证码为："+code);
+        }
+        logger.info("验证码为："+code);
         return code;
     }
     @RequestMapping(value = "/security/password")

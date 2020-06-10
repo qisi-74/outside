@@ -27,6 +27,9 @@ body{
 .reset{
     margin-left: 250px;
 }
+.reset_email{
+    margin-left: 125px;
+}
 .forget{
     float: left;
     margin-left: 10px;
@@ -153,6 +156,11 @@ a:link{
 .text{
     margin-right: 10px;
     float: left;
+}
+.text2{
+    margin-right: 10px;
+    float: left;
+    width: 100px;
 }
 .span{
     margin-top:25px;

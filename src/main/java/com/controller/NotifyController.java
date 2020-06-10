@@ -9,6 +9,7 @@ import com.service.Interface.PostService;
 import com.service.Interface.ReplyService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/notify")
 public class NotifyController {
+    private static final Logger logger= Logger.getLogger(NotifyController.class);
     @Autowired
     private NotifyService notifyService;
     @Autowired
@@ -38,7 +40,6 @@ public class NotifyController {
     private CommentService commentService;
     @Autowired
     private ReplyService replyService;
-    private static final Log logger = LogFactory.getLog(NotifyController.class);
     @RequestMapping(value = "/all")
     @ResponseBody
     public List<notify> getAll(HttpServletRequest request){

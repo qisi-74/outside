@@ -2,6 +2,7 @@ package com.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +16,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "/outside")
 public class mainController {
-    private static final Log logger = LogFactory.getLog(mainController.class);
+    private static final Logger logger= Logger.getLogger(mainController.class);
     @Autowired
     private UserService userService;
     @RequestMapping(value = "/main")
     public String main(HttpSession session, Model model){
-        logger.info("maina");
         int uid=Integer.parseInt(session.getAttribute("uid").toString());
         model.addAttribute("uid",session.getAttribute("uid"));
         model.addAttribute("user_head",session.getAttribute("head_img"));

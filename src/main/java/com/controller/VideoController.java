@@ -7,6 +7,7 @@ import com.service.Interface.VideoService;
 import com.service.common.Common;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,8 @@ import java.net.URLEncoder;
 @Controller
 @RequestMapping(value = "/video")
 public class VideoController {
-    private static final Log logger = LogFactory.getLog(Controller.class);
+    private static final Logger logger= Logger.getLogger(VideoController.class);
+
     @Autowired
     private VideoService videoService;
     @Autowired
@@ -32,10 +34,10 @@ public class VideoController {
     private PostService postService;
     @RequestMapping(value = "/play")
     public String video_playing(String ovid, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-        System.out.println(ovid);
+        logger.info(ovid);
         int vid =Integer.parseInt(ovid);
         video v=videoService.videoplay(vid);
-        System.out.println("状态"+v.getVstate());
+        logger.info("状态"+v.getVstate());
         if(v.getVstate()==0){
 
             v=null;
@@ -140,7 +142,7 @@ public class VideoController {
 //    @RequestMapping("/getVideoSrc")
 //    public OutputStream getVideoSrc(HttpServletRequest httpServletRequest,
 //                                    HttpServletResponse httpServletResponse){
-//        System.out.println("XHR:getvideosrc-----------------------------");
+//        logger.info("XHR:getvideosrc-----------------------------");
 //        //1.创建文件对象
 //        File f = new File("E:\\test\\video.mp4");
 //        //2.获取文件名称
@@ -173,7 +175,7 @@ public class VideoController {
 //            //8.输出文件
 //            os.write(buffer);
 //        }catch(Exception e){
-//            System.out.println("try  "+e.getMessage());
+//            logger.info("try  "+e.getMessage());
 //        } finally{
 //            //关闭流
 //            try {
@@ -184,7 +186,7 @@ public class VideoController {
 //                if(os != null){os.close(); }
 //
 //            } catch (IOException e) {
-//                System.out.println("finally  "+e.getMessage());
+//                logger.info("finally  "+e.getMessage());
 //            }
 //        }
 //

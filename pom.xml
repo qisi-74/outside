@@ -17,6 +17,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>5.2.3.RELEASE</spring.version>
 
+          <slf4j.version>1.7.7</slf4j.version>
+          <log4j.version>1.2.17</log4j.version>
+
       <slf4j-version>1.7.26</slf4j-version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -147,11 +150,24 @@
 
       <!--日志包-->
 
+      <!-- log4j日志文件管理包版本 -->
 
+
+      <!-- 日志文件管理包 -->
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
       <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-log4j12</artifactId>
-          <version>${slf4j-version}</version>
+          <version>${slf4j.version}</version>
       </dependency>
 
 <!--      mybatis逆向工程-->

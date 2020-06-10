@@ -3,7 +3,7 @@ body{
     padding: 0;
     width: 1540px;
     height: 714px;
-    background: black;
+    background-size:cover;
 }
 
 .container{
@@ -13,18 +13,19 @@ body{
     width: 86.6%;
     margin: 0;
     padding: 0;
-    background: chartreuse;
+    background: #32362e6b;
     overflow-y: auto;
 }
 .bar-left{
     float: left;
     height: 670px;
     width: 200px;
-    background: coral;
+    background: #ff7f501f
 }
 .container .tab{
     height:50px;
-    background: white;
+    margin: 2px;
+    background: #afafaf;
 }
 .container .upload_frame {
     width: 100%;
@@ -34,8 +35,9 @@ body{
 .container .upload_frame .box{
     width:60%;
     margin-left: 20%;
-    background: #F6F6FA;
+    background: #f6f6fa45;
     height: auto;
+    border-radius: 10px;
 }
 .container .upload_frame .box .video{
     width:80%;
@@ -49,19 +51,18 @@ body{
 }
  .box .video .swap{
     height: 50%;
-    background: burlywood;
-}
+     background: #deb8871f}
 
  .box .video .div_click{
     height:50%;
     width: 100%;
     padding:50px 0 0 250px;
-    background: gold;
+    background: #69635eb8;
     box-sizing:  border-box;
 }
 .box .video .div_click .upload1{
     display: block;
-    background: #00a1d6;
+    background: #000000b3;
     width: 160px;
     height: 35px;
     color: white;
@@ -70,10 +71,10 @@ body{
     padding-top: 10px;
 }
 .box .video .div_click .upload1:hover{
-    background: #11aee4;
+    background: #00000073;
 }
 .box .video .div_click .upload1:active{
-    background: #00a1d6;
+    background: #00000073;
 }
 .box .video-list{
     display: none;
@@ -110,7 +111,7 @@ body{
     margin-top: 20px;
     margin-bottom: 60px;
     height: 80px;
-    background: burlywood;
+    background: #FAFAFA;
 }
 .progress-bar{
     width: 100%;
@@ -130,7 +131,7 @@ body{
 .video-icon{
     width: 15%;
     height: 100%;
-    background: #ff2438;
+
     display: inline;
     float: left;
 }
@@ -138,15 +139,15 @@ body{
     width: 85%;
     height: 100%;
     float: left;
-    background: #1fff18;
+
 }
 .video-info .video-name{
     width: 75%;
     height: 20px;
     float: left;
     font-size: 14px;
-    color: #ef0b2a;
-    background: #53ecff;
+    color: rgba(0, 0, 0, 0.78);
+
     text-align: center;
     cursor: pointer;
     overflow: hidden;
@@ -167,7 +168,7 @@ text-overflow: ellipsis;
     width: 25%;
     height: 20px;
     float: left;
-    background: #1fff18;
+
     text-align: center;
 }
 .info{
@@ -180,7 +181,7 @@ text-overflow: ellipsis;
     height: 12px;
     font-size: 12px;
     margin-right: 20px;
-    color: #1fff18;
+
 }
 .video-info .video-percent{
     width: 15%;

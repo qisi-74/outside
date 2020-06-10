@@ -62,7 +62,10 @@
                 <a href="${pageContext.request.contextPath}/account/face" class="tab">更换头像</a>
             </li>
             <li class="contribution-item">
-                <a href="${pageContext.request.contextPath}/account/security" class="tab">安全中心</a>
+                <a href="${pageContext.request.contextPath}/account/security/pwd" class="tab">修改密码</a>
+            </li>
+            <li class="contribution-item">
+                <a href="${pageContext.request.contextPath}/account/security/email" class="tab">绑定邮箱</a>
             </li>
         </ul>
     </div>
@@ -130,7 +133,7 @@
             </div>
 
         </div>
-        <div  class="acc"  id="security">
+        <div  class="acc"  id="pwd">
             <form action="${pageContext.request.contextPath }/account/update/pwd" id="form-pwd" method="post">
             <div class="span">
                 <span class="text">原密码：</span>  <input type="text"  name="oldpwd" class="el-input__inner" >${error}
@@ -144,12 +147,35 @@
             </div>
             </form>
         </div>
+        <div  class="acc"  id="email">
+            <form action="${pageContext.request.contextPath }/account/update/email" id="form-email" method="post">
+                <div class="info-form">
+                    <div class="span" id="from">
+                        <input type="text" class="el-input__inner"  title="已经绑定的邮箱" disabled name="email" id="yuanemail" value=${email}  ><br>
+                    </div>
+                    <div class="span">
+                        <input type="text" class="el-input__inner"  placeholder="请输入要绑定的邮箱" name="toemail" id="toemail"  ><br>
+                        <span id="spErr1" ></span><br>
+                    </div>
+                    <div class="span">
+                        <input type="text" name="email_yzm" class="el-input__inner"  placeholder="请输入验证码" id="email_yzm" maxlength="6">
+                        <input type="button"  value="获取验证码" id="yzm_btn"><BR>
+                        <span id="spErr2" ></span><br>
+                    </div>
+
+                    <div class="face-button" id="submit_email">
+                        <span style="margin-top: 10px;">确定</span>
+                    </div>
+                </div>
+            </form>
+        </div>
 
     </div>
 
 </div>
 <input type="hidden" id="pagecontext" value="${pageContext.request.contextPath}">
 <input type="hidden" id="type" value="${type}">
+<input type="hidden" id="fromemail" value="${email}">
 <a href="${pageContext.request.contextPath}/account/security/yuan">还未设计好</a>
 </body>
 </html>

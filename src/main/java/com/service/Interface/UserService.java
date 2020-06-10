@@ -20,6 +20,7 @@ public interface UserService {
     List<user> searchuser(String name);
     String checkpwd(int uid);
     boolean updatepwd(int uid, String pwd);
+    boolean updatemail(int uid, String email);
     boolean findpwd(String email, String pwd);
     boolean block(int uid);
 }

@@ -21,6 +21,7 @@ import com.service.app.upload.TimeFormat;
 import com.service.common.Common;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,8 @@ import java.util.*;
 @Controller
 @RequestMapping(value = "/upload")
 public class UploadController {
-    private static final Log logger = LogFactory.getLog(UploadController.class);
+    private static final Logger logger= Logger.getLogger(UploadController.class);
+
 
     @Autowired
     private VideoService videoService;
@@ -64,13 +66,13 @@ public class UploadController {
         //当这里提交之后，对视频进行转码，水印，封面，
         //所以，我需要接收的有：uid，shipin目录,封面目录,
         int uid= request.getSession().getAttribute("uid")!=null?(int) request.getSession().getAttribute("uid"):-1;
-        System.out.println("视频来源："+request.getParameter("radio_kind"));
-        System.out.println("分区"+request.getParameter("area"));
-        System.out.println("标题"+request.getParameter("title"));
-        System.out.println("简介"+request.getParameter("main"));
-        System.out.println("粉丝动态"+request.getParameter("fan"));
+        logger.info("视频来源："+request.getParameter("radio_kind"));
+        logger.info("分区"+request.getParameter("area"));
+        logger.info("标题"+request.getParameter("title"));
+        logger.info("简介"+request.getParameter("main"));
+        logger.info("粉丝动态"+request.getParameter("fan"));
 
-        System.out.println(userService.query_name(Integer.parseInt(request.getSession().getAttribute("uid").toString())));
+        logger.info(userService.query_name(Integer.parseInt(request.getSession().getAttribute("uid").toString())));
 
         String video_src= CookieUtil.getCookieValue(request,"video_src",true);
         String img_src=CookieUtil.getCookieValue(request,"img_src",true);
@@ -93,22 +95,22 @@ public class UploadController {
 //            logger.info("To mp4 is ok");
 
 
-        System.out.println(video_src);
-        System.out.println(img_src);
+        logger.info(video_src);
+        logger.info(img_src);
         return "redirect:/outside/main";
     }
     @RequestMapping(value = "/contribution/ajax")
     public String contrubute_ajax(String lastdance, String title, String main, String fan, String watermark, HttpServletRequest request){
         //当这里提交之后，对视频进行转码，水印，封面，
         //所以，我需要接收的有：uid，shipin目录,封面目录,
-        System.out.println("contribution");
-        System.out.println("lastdance"+lastdance);
+        logger.info("contribution");
+        logger.info("lastdance"+lastdance);
 
         int uid= request.getSession().getAttribute("uid")!=null?(int) request.getSession().getAttribute("uid"):-1;
-        System.out.println("标题"+title);
-        System.out.println("简介"+main);
-        System.out.println("粉丝动态"+fan);
-        System.out.println("watermark"+watermark);
+        logger.info("标题"+title);
+        logger.info("简介"+main);
+        logger.info("粉丝动态"+fan);
+        logger.info("watermark"+watermark);
 
         String name=userService.query_name(Integer.parseInt(request.getSession().getAttribute("uid").toString()));
 
@@ -136,13 +138,13 @@ public class UploadController {
         String current_date=df.format(utildate);
         videoService.upload(title,Common.DB_FACEPath+img_src,cutpic,address,main,current_date,uid,lastdance);
         int vid=videoService.getLast(uid);
-        System.out.println("刚刚上传的视频是："+videoService.getLast(uid));
+        logger.info("刚刚上传的视频是："+videoService.getLast(uid));
 
         postService.post_publish_V(fan,vid,uid,current_date);
         int last=postService.getLast(uid);
         notifyService.createSubScript(last,"post","comment",uid,sqldate);
-        System.out.println(video_src);
-        System.out.println(img_src);
+        logger.info(video_src);
+        logger.info(img_src);
         return "main/upload/upload";
     }
     @RequestMapping(value = "/area/ajax")
@@ -158,11 +160,11 @@ public class UploadController {
     public String uploadajax(@RequestParam("file") CommonsMultipartFile file,
                              HttpServletRequest req, HttpServletResponse response, Model model){
         logger.info("upload_ajax");
-        System.out.println(req.getSession().getServletContext().getRealPath("/"));
+        logger.info(req.getSession().getServletContext().getRealPath("/"));
         if (file.getSize() != 0) {
-            System.out.println(file.getName());
-            System.out.println(file.getOriginalFilename());
-            System.out.println(file.getSize());
+            logger.info(file.getName());
+            logger.info(file.getOriginalFilename());
+            logger.info(file.getSize());
             //上传的多格式的视频文件-作为临时路径保存，转码以后删除-路径不能写//
 //            String path = "E:\\idea\\graduation\\outside\\web\\statics\\temp";
             // 获取上传时候的文件名
@@ -171,7 +173,7 @@ public class UploadController {
             // 获取文件后缀名
             String filename_extension = filename.substring(filename
                     .lastIndexOf(".") + 1);
-            System.out.println("视频的后缀名:"+filename_extension);
+            logger.info("视频的后缀名:"+filename_extension);
             System.getProperty("user.dir");
             String path="";
             String type="";
@@ -193,23 +195,23 @@ public class UploadController {
             File TempFile = new File(path);
             if (TempFile.exists()) {
                 if (TempFile.isDirectory()) {
-                    System.out.println("该文件夹存在。");
+                    logger.info("该文件夹存在。");
                 } else {
-                    System.out.println("同名的文件存在，不能创建文件夹。");
+                    logger.info("同名的文件存在，不能创建文件夹。");
                 }
             } else {
-                System.out.println("文件夹不存在，创建该文件夹。");
+                logger.info("文件夹不存在，创建该文件夹。");
                 TempFile.mkdir();
             }
 
             //源视频地址=视频缓冲路径+重命名后的视频名
             String yuanPATH =(path+filename);
 
-            System.out.println("源视频路径为:"+yuanPATH);
+            logger.info("源视频路径为:"+yuanPATH);
 
             //上传到本地磁盘/服务器
             try {
-                System.out.println("写入本地磁盘/服务器;");
+                logger.info("写入本地磁盘/服务器;");
                 InputStream is = file.getInputStream();
                 OutputStream os = new FileOutputStream(new File(path, filename));
                 int len = 0;
@@ -251,7 +253,7 @@ public class UploadController {
         long velocity=length/time;
         long totalTime=status.getpContentLength()/velocity;
         long timeLeft=totalTime-time;
-//        System.out.println( percent + "%||" + f.Format(length) + "||" + f.Format(totalLength) + "||"
+//        logger.info( percent + "%||" + f.Format(length) + "||" + f.Format(totalLength) + "||"
 //                + f.Format(velocity*1000)+ "/s||" + time/1000.0 + "s||" + totalTime + "s||" + TimeFormat.formatSeconds(timeLeft));
         Map<String, Object> result = new HashMap<>();
         result.put("up_total",f.Format(totalLength));

@@ -1,6 +1,4 @@
-<%@ page import="po.ProgressEntity" %>
-<%@ page import="com.sun.org.apache.xpath.internal.operations.Div" %>
-<%@ page import="javafx.scene.control.Alert" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Mr.Hao
   Date: 2020/3/17
@@ -19,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/upload/upload_video.css">
 </head>
-<body>
+<body background="${pageContext.request.contextPath}/statics/img/极光.jpeg">
 <div class="header">
     <div class="nav nav_left">
         <div class="main" >
@@ -81,7 +79,7 @@
                         </div>
                         <div class="video-info">
                             <div class="video-name">
-                                adsf
+
                             </div>
                             <div class="video-other">
                                 <span id="video-pause" class="item-status-click">暂停</span>

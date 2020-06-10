@@ -30,9 +30,9 @@
 <div class="form-container">
 <form action="${pageContext.request.contextPath }/check/registercheck" method="post" name="form" class="form-1">
     <span id="spErr" style="color:#c156ff">${error}</span><br>
-    <input type="text" name="name" id="name" class="input-100"  placeholder="昵称">
+    <input type="text" name="name" id="name" class="input-100"  maxlength="16" placeholder="昵称">
     <span id="spErr1"></span><br>
-        <input type="text" class="input-2 input-100" maxlength="16" name="password" id="pwd"  placeholder="密码（6-16个字符组成，区分大小写）">
+        <input type="text" class="input-2 input-100" maxlength="16" name="password" id="pwd"  placeholder="密码（8-16个字符组成，区分大小写）">
         <span id="spErr2"></span><br>
     <div class="progress-bar_wrap">
         <span class="progress-bar_item progress-bar_item-1"></span>
@@ -45,7 +45,7 @@
         <input type="text" class="input-4" id="yzm" maxlength="6" placeholder="验证码">
         <input id="btn_yzm" class="input-5" type="button" value="点击获取验证码" >
         <span id="spErr4"></span><br>
-        <input id="button" type="button" value="注册" class="input input-100">
+        <input id="button" type="button" value="注册" class="input input-100" style="color:white;">
     <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
 
 </form>

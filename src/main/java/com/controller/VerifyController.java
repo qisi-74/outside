@@ -4,6 +4,7 @@ import com.service.Interface.PostService;
 import com.service.Interface.UserService;
 import com.service.Interface.VerifyService;
 import com.service.Interface.VideoService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "/verify")
 public class VerifyController {
+    private static final Logger logger= Logger.getLogger(VerifyController.class);
     @Autowired
     private VerifyService verifyService;
     @Autowired
@@ -46,7 +48,7 @@ public class VerifyController {
         String ps=request.getParameter("password");
         String verid=zh.substring(3,zh.length());
         if(verifyService.check(verid,ps)){
-            System.out.println(zh+ps);
+            logger.info(zh+ps);
             session=request.getSession();
             session.setAttribute("ver_id",verid);
             return "redirect:/verify/main";

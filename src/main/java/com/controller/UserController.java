@@ -1,12 +1,12 @@
 package com.controller;
 
+
 import com.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value = "/check")
 public class UserController {
+
     @Autowired
     private UserServiceImpl userService;
     @RequestMapping(value = "/logincheck")
@@ -24,17 +25,17 @@ public class UserController {
         String ps=request.getParameter("password");
         System.out.println(zh+ps);
         if(userService.login(zh,ps)){
-           session =request.getSession();
-           int uid=userService.uniq(zh);
-           if(userService.query(uid).getState()==1){
-               String headimg=userService.getheadimg(uid);
-               session.setAttribute("head_img",headimg);
-               session.setAttribute("uid",uid);
-               return "redirect:/outside/main";
-           }else {
-               model.addAttribute("error","那啥，，你号被封了~");
-               return  "login";
-           }
+            session =request.getSession();
+            int uid=userService.uniq(zh);
+            if(userService.query(uid).getState()==1){
+                String headimg=userService.getheadimg(uid);
+                session.setAttribute("head_img",headimg);
+                session.setAttribute("uid",uid);
+                return "redirect:/outside/main";
+            }else {
+                model.addAttribute("error","那啥，，你号被封了~");
+                return  "login";
+            }
 
         }else {
             model.addAttribute("error","用户名或密码错误!!!");

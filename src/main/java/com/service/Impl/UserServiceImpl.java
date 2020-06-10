@@ -19,11 +19,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String zh,String ps) {
-        if(userDao.selectUserByZh(zh).equals(ps)){
-            return true;
-        }else {
-            return false;
+        if(userDao.selectUserByZh(zh)!=null){
+            if(userDao.selectUserByZh(zh).equals(ps)){
+                return true;
+            }else {
+                logger.info("密码不对呢");
+                return false;
+            }
         }
+        return false;
     }
 
     @Override
@@ -126,6 +130,15 @@ public class UserServiceImpl implements UserService {
         user u=new user();
         u.setUid(uid);
         u.setPassword(pwd);
+        userDao.updatesetting(u);
+        return true;
+    }
+    @Override
+    public boolean updatemail(int uid, String email) {
+        logger.info(uid+email);
+        user u=new user();
+        u.setUid(uid);
+        u.setEmail(email);
         userDao.updatesetting(u);
         return true;
     }

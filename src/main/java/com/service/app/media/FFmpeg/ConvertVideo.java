@@ -195,7 +195,7 @@ public class ConvertVideo {
         fwatermark.add(srcPath);
         fwatermark.add("-y");
         fwatermark.add("-vf");
-        fwatermark.add("drawtext=fontfile=STXINGKA.TTF:text='"+waterMarkPath+"':x=10:y=10:fontsize=13:fontcolor=white");
+        fwatermark.add("drawtext=fontfile=STXINGKA.TTF:text='"+waterMarkPath+"':x=10:y=10:fontsize=25:fontcolor=orange");
         fwatermark.add(tarVideoPath);
         inputPath=tarVideoPath;
         boolean mark = true;

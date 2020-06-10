@@ -8,6 +8,7 @@ import com.service.app.CookieUtil;
 import com.service.common.Common;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping(value = "/t")
 public class tController {
+    private static final Logger logger= Logger.getLogger(tController.class);
 
     @Autowired
     private PostService postService;
@@ -55,7 +57,6 @@ public class tController {
     @Autowired
     private NotifyService notifyService;
 
-    private static final Log logger = LogFactory.getLog(tController.class);
     @RequestMapping(value = "/post")
     public String post(){
         logger.info("post");
@@ -113,23 +114,23 @@ public class tController {
             File TempFile = new File(path);
             if (TempFile.exists()) {
                 if (TempFile.isDirectory()) {
-                    System.out.println("该文件夹存在。");
+                    logger.info("该文件夹存在。");
                 } else {
-                    System.out.println("同名的文件存在，不能创建文件夹。");
+                    logger.info("同名的文件存在，不能创建文件夹。");
                 }
             } else {
-                System.out.println("文件夹不存在，创建该文件夹。");
+                logger.info("文件夹不存在，创建该文件夹。");
                 TempFile.mkdirs();
             }
 
             //源视频地址=视频缓冲路径+重命名后的视频名
             String yuanPATH = (path + filename);
 
-            System.out.println("源视频路径为:" + yuanPATH);
+            logger.info("源视频路径为:" + yuanPATH);
 
             //上传到本地磁盘/服务器
             try {
-                System.out.println("写入本地磁盘/服务器;");
+                logger.info("写入本地磁盘/服务器;");
                 InputStream is = file.getInputStream();
                 OutputStream os = new FileOutputStream(new File(path, filename));
                 int len = 0;

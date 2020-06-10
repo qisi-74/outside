@@ -35,7 +35,7 @@ $(function() {
 
         })
 
-timer处理函数
+//timer处理函数
         function SetRemainTime() {
             if (curCount == 0) {
                 window.clearInterval(InterValObj);//停止计时器
