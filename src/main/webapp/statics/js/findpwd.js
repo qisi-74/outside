@@ -58,6 +58,7 @@ $(function() {
                 window.clearInterval(InterValObj);//停止计时器
                 $("#yzm_btn").removeAttr("disabled");//启用按钮
                 $("#yzm_btn").val("重新发送验证码");
+                curCount=count;
             } else {
                 curCount--;
                 $("#yzm_btn").val(curCount + "秒后可重新发送");

@@ -15,6 +15,7 @@
 </head>
 <body>
 <div id="tologin">
+    新建了test分支
     <%--      <a href="${pageContext.request.contextPath }/index/login">登录</a>--%>
     <%--      <a href="${pageContext.request.contextPath }/index/register">注册</a>--%>
 </div>
